@@ -29,7 +29,7 @@ jobs:
           build: npm run build
           start: npm run start-prod
       - name: Trigger deployment
-        if: ${{ github.event_name == 'push' }}
+        if: github.event_name == 'push' && !contains(toJson(join(github.event.commits.*.message)), '#skip') 
         run: curl https://api.render.com/deploy/srv-chf7hem4dad1jq9s3hl0?key=OBMB1vdrfNs
   tag_release:
       needs: [simple_deployment_pipeline]
@@ -39,7 +39,7 @@ jobs:
          with:
           fetch-depth: '0'
        - name: Bump version and push tag
-         if: ${{ github.event_name == 'push' }}
+         if: github.event_name == 'push' && !contains(toJson(join(github.event.commits.*.message)), '#skip')  
          uses: anothrNick/github-tag-action@1.64.0 
          env: 
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
