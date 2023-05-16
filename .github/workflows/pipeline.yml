@@ -30,7 +30,8 @@ jobs:
           start: npm run start-prod
       - name: Trigger deployment
         if: github.event_name == 'push' && !contains(toJson(join(github.event.commits.*.message)), '#skip') 
-        run: curl https://api.render.com/deploy/srv-chf7hem4dad1jq9s3hl0?key=OBMB1vdrfNs
+        
+        run: curl ${{ secrets.DEPLOY_URL }}  
       - name: Deploy success
         uses: rjstone/discord-webhook-notify@v1
         if: success()
