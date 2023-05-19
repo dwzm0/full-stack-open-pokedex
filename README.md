@@ -1,3 +1,7 @@
+Link on reviewed 11.20 - 11.21
+
+https://github.com/dwzm0/part11-bloglist
+
 # Full Stack open CI/CD
 
 This repository is used for the CI/CD module of the Full stack open course
